@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>보홀 출발 카운트다운</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 50px;
+    }
+    #timer {
+      font-size: 60px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>민뚱기, 김지훈, 개범수, 전민우 보홀 출발까지 남은 시간</h1>
+  <div id="timer">계산 중...</div>
+
+  <script>
+    // 대한민국 시간 기준으로 2025년 5월 17일 오전 9시 10분 설정 (UTC+9)
+    const targetDate = new Date("2025-05-17T09:10:00+09:00");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("timer").innerText = "출발 시간입니다! ✈️";
+        return;
+      }
+
+      const hours = String(Math.floor(diff / 1000 / 60 / 60)).padStart(2, '0');
+      const minutes = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+      const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+      document.getElementById("timer").innerText = `${hours} : ${minutes} : ${seconds}`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
